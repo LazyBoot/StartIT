@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      div.container {
+        display: flex;
+        height: 28vh;
+      }
+      div.number {
+        color: red;
+        background-color: blue;
+        margin: 10px;
+        border: 10px solid green;
+        display: flex;
+        flex: 1;
+        font-size: 500%;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Introduksjon til HTML, CSS og javascript</h1>
+
+    <div class="container">
+      <div id="a1" class="number" onclick="move(this, 'a2', 'b1')">7</div>
+      <div id="a2" class="number" onclick="move(this, 'a1', 'a3', 'b2')">2</div>
+      <div id="a3" class="number" onclick="move(this, 'a2', 'b3')">5</div>
+    </div>
+
+    <div class="container">
+      <div id="b1" class="number" onclick="move(this, 'a1', 'b2', 'c1')"></div>
+      <div id="b2" class="number" onclick="move(this, 'a2', 'b1', 'b3', 'c2')">1</div>
+      <div id="b3" class="number" onclick="move(this, 'a3', 'b2', 'c3')">3</div>
+    </div>
+
+    <div class="container">
+      <div id="c1" class="number" onclick="move(this, 'b1', 'c2')">6</div>
+      <div id="c2" class="number" onclick="move(this, 'b2', 'c1', 'c3')">9</div>
+      <div id="c3" class="number" onclick="move(this, 'b3', 'c2')">8</div>
+    </div>
+
+
+    <script>
+      var tags = document.getElementsByClassName('number')
+
+      function move(tag, alt1, alt2, alt3, alt4) {
+        if(alt1 && document.getElementById(alt1).innerHTML == '') {
+          document.getElementById(alt1).innerHTML = tag.innerHTML;
+          tag.innerHTML = '';
+        }
+        if(alt2 && document.getElementById(alt2).innerHTML == '') {
+          document.getElementById(alt2).innerHTML = tag.innerHTML;
+          tag.innerHTML = '';
+        }
+        if(alt3 &&document.getElementById(alt3).innerHTML == '') {
+          document.getElementById(alt3).innerHTML = tag.innerHTML;
+          tag.innerHTML = '';
+        }
+        if(alt4 &&document.getElementById(alt4).innerHTML == '') {
+          document.getElementById(alt4).innerHTML = tag.innerHTML;
+          tag.innerHTML = '';
+        }
+
+        var correct = 0
+        for (var i=0;i<tags.length;i++) {
+          if (tags[i].innerHTML == (i+1)) {
+            correct++;
+          }
+        }
+        if (correct >= 8) {
+          alert('Du vant!');
+        }
+      }
+    </script>
+  </body>
+</html>
