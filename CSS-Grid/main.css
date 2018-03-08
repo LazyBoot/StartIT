@@ -46,11 +46,12 @@
     background-color: lightslategray;
     padding-right: 10px;
     color: white;
-    font-size: 2em;
+    font-size: 1.5em;
     text-align: right;
     vertical-align: middle;
 }
 
 .footer p {
     margin: 15px;
+    margin-top: 20px;
 }
