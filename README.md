@@ -1,2 +1,2 @@
-# StartIT
-Start IT Kurs
+# Nothing to see here.
+Move along.
