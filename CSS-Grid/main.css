@@ -13,11 +13,6 @@
         "footer footer";
 }
 
-.container::after {
-    content: "";
-
-}
-
 .item {
     /*border: 5px solid;*/
 }
