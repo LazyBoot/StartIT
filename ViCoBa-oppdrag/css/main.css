@@ -1,0 +1,12 @@
+﻿body
+{
+}
+
+/*table, td {
+    border: 1px solid black;
+    border-spacing: 0;
+}*/
+
+.midheading td {
+    border-top: 3px solid black;
+}
