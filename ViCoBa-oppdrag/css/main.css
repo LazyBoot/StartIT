@@ -2,16 +2,113 @@
 {
 }
 
-/*table, td {
-    border: 1px solid black;
-    border-spacing: 0;
-}*/
+table, td {
+    /*border: 1px solid black;
+    border-spacing: 0;*/
+    width: 100%;
+    padding: 3px 5px;
+}
+
+h2 {
+    line-height: 0.5;
+}
 
 .number {
     text-align: right;
 }
 
 .midheading td {
-    border-top: 3px solid black;
-    text-align: left;
+    /*border-top: 3px solid black;
+    text-align: left;*/
+}
+
+.tableheading {
+    text-align: center;
+    width: 100%;
+    background-color: darkgray;
+    color: white;
+    padding: 5px 0;
+}
+
+.maingrid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 150px 300px 300px;
+    grid-template-rows: 75px 80px auto;
+    grid-template-areas:
+        "header header header"
+        "navigation subheader subheader"
+        "navigation incometable expensestable";
+    grid-gap: 10px;
+}
+
+
+#header {
+    grid-area: header;
+    text-transform: uppercase;
+}
+
+#navigation {
+    grid-area: navigation;
+    margin-top: 20px;
+}
+
+#navigation .navlink {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding: 20px 0;
+    background-color: lightskyblue;
+    border: 1px solid white;
+}
+
+#navigation .navlink:hover {
+    border-right: 3px solid green;
+}
+
+#subheader {
+    grid-area: subheader;
+    padding: 0 5px;
+    /*background-color: darkgray;
+    color: white;*/
+}
+
+#income {
+    grid-area: incometable;
+    background-color: lightgray;
+}
+
+#expenses {
+    grid-area: expensestable;
+    background-color: lightgray;
+}
+
+@media screen and (max-width: 780px) {
+    .maingrid {
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+            "header"
+            "navigation" 
+            "subheader" 
+            "incometable"
+            "expensestable";
+    }
+
+    #navigation {
+        width: 100%;
+        padding: unset;
+        margin: unset;
+    }
+
+    #navigation .navlink {
+        display: inline-block;
+        width: 19%;
+    }
+
+    #navigation .navlink:hover {
+        border-right: unset;
+        border-bottom: 3px solid green;
+    }
+
 }

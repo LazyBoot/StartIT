@@ -7,69 +7,101 @@
     <title>ViCoBa</title>
 </head>
 <body>
-    <div class="header">
-        <h1>ViCoBa</h1>
-    </div>
-    <div class="form">
-        <h2>Status</h2>
-        <select name="person">
-            <option value="All">All</option>
-            <option value="--">---------</option>
-            <option value="Test1">Test1</option>
-            <option value="Test2">Test2</option>
-            <option value="Test3">Test3</option>
-            <option value="Test4">Test4</option>
-        </select><br />
-        <table>
-            <tr>
-                <td class="heading">Total</td>
-                <td class="number">2000</td>
-            </tr>
-            <tr class="midheading">
-                <td>&nbsp;</td>
-                <td>Income</td>
-            </tr>
-            <tr>
-                <td class="heading">Total</td>
-                <td class="number">3080</td>
-            </tr>
-            <tr>
-                <td class="heading">Social funds</td>
-                <td class="number">2000</td>
-            </tr>
-            <tr>
-                <td class="heading">Shares</td>
-                <td class="number">1000</td>
-            </tr>
-            <tr>
-                <td class="heading">Loan Interest</td>
-                <td class="number">70</td>
-            </tr>
-            <tr>
-                <td class="heading">Other</td>
-                <td class="number">10</td>
-            </tr>
-            <tr class="midheading">
-                <td>&nbsp;</td>
-                <td>Expenses</td>
-            </tr>
-            <tr>
-                <td class="heading">Total</td>
-                <td class="number">880</td>
-            </tr>
-            <tr>
-                <td class="heading">Social Loans</td>
-                <td class="number">500</td>
-            </tr>
-            <tr>
-                <td class="heading">Share Loans</td>
-                <td class="number">300</td>
-            </tr>
-            <tr>
-                <td class="heading">Other</td>
-                <td class="number">40</td>
-            </tr>
-        </table>
+    <div class="maingrid">
+        <div id="header">
+            <h1>ViCoBa</h1>
+            <hr />
+        </div>
+
+        <div id="navigation">
+            <div class="navlink"><a href="#">Link1</a></div>
+            <div class="navlink"><a href="#">Link2</a></div>
+            <div class="navlink"><a href="#">Link3</a></div>
+            <div class="navlink"><a href="#">Link4</a></div>
+            <div class="navlink"><a href="#">Link5</a></div>
+        </div>
+
+        <div id="subheader">
+            <h2>Status</h2>
+            <select name="person">
+                <option value="All">All</option>
+                <option value="--">---------</option>
+                <option value="Test1">Test1</option>
+                <option value="Test2">Test2</option>
+                <option value="Test3">Test3</option>
+                <option value="Test4">Test4</option>
+            </select>
+        </div>
+
+        <div id="income">
+            <div class="tableheading">
+                Income
+            </div>
+            <table>
+                <!--<tr>
+                    <td class="heading">Total</td>
+                    <td class="number">2000</td>
+                </tr>
+                <tr class="midheading">
+                    <td>&nbsp;</td>
+                    <td>Income</td>
+                </tr>-->
+                <tr>
+                    <td class="heading">Total</td>
+                    <td class="number">3080</td>
+                </tr>
+                <tr>
+                    <td class="heading">Social funds</td>
+                    <td class="number">2000</td>
+                </tr>
+                <tr>
+                    <td class="heading">Shares</td>
+                    <td class="number">1000</td>
+                </tr>
+                <tr>
+                    <td class="heading">Loan Interest</td>
+                    <td class="number">70</td>
+                </tr>
+                <tr>
+                    <td class="heading">Other</td>
+                    <td class="number">10</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="expenses">
+            <div class="tableheading">
+                Expenses
+            </div>
+            <table>
+                <!--<tr>
+                    <td colspan="2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr class="midheading">
+                    <td>&nbsp;</td>
+                    <td>Expenses</td>
+                </tr>-->
+                <tr>
+                    <td class="heading">Total</td>
+                    <td class="number">880</td>
+                </tr>
+                <tr>
+                    <td class="heading">Social Loans</td>
+                    <td class="number">500</td>
+                </tr>
+                <tr>
+                    <td class="heading">Share Loans</td>
+                    <td class="number">300</td>
+                </tr>
+                <tr>
+                    <td class="heading">Other</td>
+                    <td class="number">40</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </body>
 </html>
