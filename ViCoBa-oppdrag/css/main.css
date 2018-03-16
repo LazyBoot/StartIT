@@ -83,7 +83,7 @@ h2 {
     background-color: lightgray;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 900px) {
     .maingrid {
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
