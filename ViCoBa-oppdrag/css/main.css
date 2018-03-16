@@ -53,6 +53,11 @@ h2 {
     margin-top: 20px;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 #navigation .navlink {
     width: 100%;
     text-align: center;
@@ -60,6 +65,7 @@ h2 {
     padding: 20px 0;
     background-color: lightskyblue;
     border: 1px solid white;
+    list-style: none;
 }
 
 #navigation .navlink:hover {
@@ -97,8 +103,11 @@ h2 {
 
     #navigation {
         width: 100%;
-        padding: unset;
-        margin: unset;
+        padding: 0;
+        margin: auto;
+    }
+    #navigation ul {
+        text-align: center;
     }
 
     #navigation .navlink {
