@@ -83,7 +83,7 @@ h2 {
     background-color: lightgray;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 780px) {
     .maingrid {
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
@@ -103,7 +103,7 @@ h2 {
 
     #navigation .navlink {
         display: inline-block;
-        width: 19%;
+        width: 18%;
     }
 
     #navigation .navlink:hover {
