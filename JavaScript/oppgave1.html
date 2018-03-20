@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="margin-left:40px;">
+    <h1>Quiz!</h1>
+    <h2>Hvilken dag er det i dag?</h2>
+    <button onclick="checkDay(1)">Mandag</button>
+    <button onclick="checkDay(2)">Tirsdag</button>
+    <button onclick="checkDay(3)">Onsdag</button>
+    <button onclick="checkDay(4)">Torsdag</button>
+    <button onclick="checkDay(5)">Fredag</button>
+    <button onclick="checkDay(6)">Lørdag</button>
+    <button onclick="checkDay(0)">Søndag</button>
+
+    <div id="resultText" style="visibility:hidden; margin-top: 20px;">Ditt svar er: <span id="result"></span></div>
+
+    <script language="javascript">
+        var d = new Date();
+        var result = document.getElementById("result");
+
+        function checkDay(day) {
+            if (day == d.getDay()) {
+                result.style.color = "red";
+                result.innerHTML = "Korrekt";
+            }
+            else {
+                result.style.color = "black";
+                result.innerHTML = "Feil";
+            }
+            document.getElementById("resultText").style.visibility = "visible";
+        }
+    </script>
+</body>
+</html>
