@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body, button {
+            font-size: 38px;
+        }
+    </style>
+</head>
+<body style="margin:50px;">
+    <table>
+        <tr>
+            <td><button onclick="buttonClick(this);">1</button></td>
+            <td><button onclick="buttonClick(this);">2</button></td>
+            <td><button onclick="buttonClick(this);">3</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="buttonClick(this);">4</button></td>
+            <td><button onclick="buttonClick(this);">5</button></td>
+            <td><button onclick="buttonClick(this);">6</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="buttonClick(this);">7</button></td>
+            <td><button onclick="buttonClick(this);">8</button></td>
+            <td><button onclick="buttonClick(this);">9</button></td>
+        </tr>
+    </table>
+    <div id="result" style="visibility: hidden;">Du har låst opp</div>
+
+    <script language="javascript">
+        var locked = true;
+        var currentCode = '';
+        var correctCode = ['3', '8', '1', '2'];
+        var result = document.getElementById('result');
+
+        function buttonClick(button) {
+            if (button.innerHTML == correctCode[currentCode.length]) {
+                currentCode += button.innerHTML;
+            }
+            else {
+                currentCode = '';
+                result.style.visibility = 'hidden';
+            }
+
+            if (currentCode == correctCode.join('')) {
+                result.style.visibility = 'visible';
+            }
+        }
+    </script>
+</body>
+</html>
