@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="margin:50px; font-size:28px;">
+    <table cellpadding="10" onmouseout="mouseOut();">
+        <tr>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+        </tr>
+        <tr>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+        </tr>
+        <tr>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+        </tr>
+        <tr>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+            <td class="cell" onmouseover="mouseOver(this);">o</td>
+        </tr>
+    </table>
+
+    <script language="javascript">
+        var cells = document.getElementsByClassName('cell');
+
+        function mouseOver(curCell) {
+            mouseOut();
+            curCell.innerHTML = "x";
+        }
+
+        function mouseOut() {
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].innerHTML = "o";
+            }
+
+        }
+    </script>
+</body>
+</html>
