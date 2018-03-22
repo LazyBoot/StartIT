@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body onload="onLoad()">
+    <h2>Script på onload test</h2>
+
+    <div id="testInline"></div>
+    <div id="testOnLoad"></div>
+
+    <img src="https://lazyboot.github.io/StartIT/JavaScript/img/PANO0001_stitch-50.jpg" height="1000" width="1000" />
+
+    <script language="javascript">
+        document.getElementById('testInline').innerHTML = 'inline ' + (new Date().toTimeString());
+
+        function onLoad() {
+            document.getElementById('testOnLoad').innerHTML = 'onLoad ' + (new Date().toTimeString());
+        }
+    </script>
+</body>
+</html>
