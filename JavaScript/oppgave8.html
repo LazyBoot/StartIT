@@ -61,8 +61,8 @@
         var margin = document.getElementById('margin');
         var bgcolor = document.getElementById('bgcolor');
         var color = document.getElementById('color');
-        //var divs[] = document.getElementsByTagName('div');
-        var currentDiv = document.getElementById('div1');
+        var divs = document.getElementsByTagName('div');
+        var currentDiv = divs[Math.floor(Math.random() * divs.length)];
 
         clickDiv(currentDiv);
 
