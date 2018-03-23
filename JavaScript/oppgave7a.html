@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Bredde:</td>
+            <td><span id="widthText"></span></td>
+        </tr>
+        <tr>
+            <td>Høyde:</td>
+            <td><span id="heightText"></span></td>
+        </tr>
+    </table>
+    <br />
+    <div id="box" style="border: 5px solid black;"></div>
+
+    <script language="javascript">
+        "use strict";
+
+        var boxWidth = 1 + Math.floor(Math.random() * 1000);
+        var boxHeight = 1 + Math.floor(Math.random() * 1000);
+        var box = document.getElementById('box');
+        var widthText = document.getElementById('widthText');
+        var heightText = document.getElementById('heightText');
+
+        sizeDiv();
+
+        function sizeDiv() {
+            box.style.width = boxWidth + 'px';
+            box.style.height = boxHeight + 'px';
+
+            widthText.innerHTML = boxWidth + 'px';
+            heightText.innerHTML = boxHeight + 'px';
+        }
+    </script>
+</body>
+</html>
