@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Bredde:</td>
+            <td><input id="width" type="range" min="1" max="1000" step="1" oninput="sizeDiv();" /></td>
+        </tr>
+        <tr>
+            <td>Bredde:</td>
+            <td><input id="height" type="range" min="1" max="1000" step="1" oninput="sizeDiv();" /></td>
+        </tr>
+    </table>
+    <br />
+    <div id="box" style="border: 5px solid black;">
+        Areal: <span id="areaText"></span>px<br />
+        Omkrets: <span id="circText"></span>px
+    </div>
+
+    <script language="javascript">
+        "use strict";
+
+        var boxWidth = document.getElementById('width');
+        var boxHeight = document.getElementById('height');
+        var box = document.getElementById('box');
+        var areaText = document.getElementById('areaText');
+        var circText = document.getElementById('circText');
+
+        sizeDiv();
+
+        function sizeDiv() {
+            box.style.width = boxWidth.value + 'px';
+            box.style.height = boxHeight.value + 'px';
+
+            areaText.innerHTML = boxWidth.value * boxHeight.value;
+            circText.innerHTML = 2 * boxWidth.value + 2 * boxHeight.value;
+        }
+    </script>
+</body>
+</html>
