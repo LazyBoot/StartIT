@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 5px;
+            margin: 5px;
+            background-color: white;
+            color: black;
+            width: 400px;
+        }
+
+        .selected {
+            border-width: 5px;
+        }
+
+        .border {
+            border-color: red;
+        }
+
+        .padding {
+            padding:20px;
+        }
+
+        .margin {
+            margin: 20px;
+        }
+
+        .bgcolor {
+            background-color: skyblue;
+        }
+
+        .color {
+            color: orange;
+        }
+    </style>
+
+</head>
+<body>
+    <input type="checkbox" id="border" value="border" onchange="checkBox(this);" />Border<br />
+    <input type="checkbox" id="padding" value="padding" onchange="checkBox(this);" />Padding<br />
+    <input type="checkbox" id="margin" value="margin" onchange="checkBox(this);" />Margin<br />
+    <input type="checkbox" id="bgcolor" value="bgcolor" onchange="checkBox(this);" />Background Color<br />
+    <input type="checkbox" id="color" value="color" onchange="checkBox(this);" />Text Color<br />
+
+    <div id="div1" onclick="clickDiv(this);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu enim diam.</div>
+    <div id="div2" onclick="clickDiv(this);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu enim diam.</div>
+    <div id="div3" onclick="clickDiv(this);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu enim diam.</div>
+    <div id="div4" onclick="clickDiv(this);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu enim diam.</div>
+    <div id="div5" onclick="clickDiv(this);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu enim diam.</div>
+
+    <script language="javascript">
+        "use strict";
+
+        var border = document.getElementById('border');
+        var padding = document.getElementById('padding');
+        var margin = document.getElementById('margin');
+        var bgcolor = document.getElementById('bgcolor');
+        var color = document.getElementById('color');
+        //var divs[] = document.getElementsByTagName('div');
+        var currentDiv = document.getElementById('div1');
+
+        clickDiv(currentDiv);
+
+        function clickDiv(div) {
+            currentDiv.classList.remove('selected');
+            currentDiv = div;
+            currentDiv.classList.add('selected');
+
+            border.checked = currentDiv.classList.contains('border')
+            padding.checked = currentDiv.classList.contains('padding')
+            margin.checked = currentDiv.classList.contains('margin')
+            bgcolor.checked = currentDiv.classList.contains('bgcolor')
+            color.checked = currentDiv.classList.contains('color')
+        }
+
+        function checkBox(box) {
+            currentDiv.classList.toggle(box.id, box.checked);
+        }
+    </script>
+
+
+</body>
+</html>
