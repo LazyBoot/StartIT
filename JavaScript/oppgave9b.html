@@ -40,7 +40,7 @@
 
         function codeClick(button) {
             enteredSoFar += button.innerHTML;
-            if (!('' + correctCode.value).startsWith(enteredSoFar) && !correctCode.style.visibility == 'visible') {
+            if (!correctCode.value.startsWith(enteredSoFar) && !correctCode.style.visibility == 'visible') {
                 enteredSoFar = '';
                 result.innerHTML = '';
                 correctCode.style.visibility = 'hidden';
