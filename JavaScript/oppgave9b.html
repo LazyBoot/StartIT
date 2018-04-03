@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body, button {
+            font-size: 38px;
+        }
+    </style>
+</head>
+<body style="margin:50px;">
+    <table>
+        <tr>
+            <td><button onclick="codeClick(this);">1</button></td>
+            <td><button onclick="codeClick(this);">2</button></td>
+            <td><button onclick="codeClick(this);">3</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="codeClick(this);">4</button></td>
+            <td><button onclick="codeClick(this);">5</button></td>
+            <td><button onclick="codeClick(this);">6</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="codeClick(this);">7</button></td>
+            <td><button onclick="codeClick(this);">8</button></td>
+            <td><button onclick="codeClick(this);">9</button></td>
+        </tr>
+        <tr>
+            <td colspan="3" style="font-size: 20px;"><button style="font-size: 20px; width:100%;" onclick="resetButton();">Reset</button></td>
+        </tr>
+    </table>
+    <div id="result"></div>
+
+    <script language="javascript">
+        var result = document.getElementById('result');
+        var correctCode = '8521';
+        var enteredSoFar = '';
+
+        function codeClick(button) {
+            enteredSoFar += button.innerHTML;
+            if (!correctCode.startsWith(enteredSoFar)) {
+                enteredSoFar = '';
+                result.innerHTML = '';
+            }
+
+            if (enteredSoFar == correctCode) {
+                result.innerHTML = 'ÅPEN!';
+            }
+        }
+
+        function resetButton() {
+            result.innerHTML = '';
+            enteredSoFar = '';
+        }
+    </script>
+
+</body>
+</html>
