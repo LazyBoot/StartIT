@@ -40,13 +40,14 @@
         var widthSlider = document.getElementById('tallA');
         var heightSlider = document.getElementById('tallB');
         var result = document.getElementById('resultat');
-        var divs = document.getElementsByClassName('boxes');
-        var currentDiv = divs[0];
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var currentDiv = box1;
 
-        divs[0].style.width = '100px';
-        divs[0].style.height = '100px';
-        divs[1].style.width = '100px';
-        divs[1].style.height = '100px';
+        box1.style.width = '100px';
+        box1.style.height = '100px';
+        box2.style.width = '100px';
+        box2.style.height = '100px';
 
         clickDiv(currentDiv);
         calculate();
@@ -64,18 +65,20 @@
             currentDiv.style.width = widthSlider.value + 'px';
             currentDiv.style.height = heightSlider.value + 'px';
 
-            var widths = [parseInt(divs[0].style.width), parseInt(divs[1].style.width)]
-            var heights = [parseInt(divs[0].style.height), parseInt(divs[1].style.height)]
-            divs[0].getElementsByClassName('areaText')[0].innerHTML = widths[0] * heights[0];
-            divs[1].getElementsByClassName('areaText')[0].innerHTML = widths[1] * heights[1];
+            var box1Width = parseInt(box1.style.width);
+            var box1Height = parseInt(box1.style.height);
+            var box2Width = parseInt(box2.style.width);
+            var box2Height = parseInt(box2.style.height);
+            box1.getElementsByClassName('areaText')[0].innerHTML = box1Width * box1Height;
+            box2.getElementsByClassName('areaText')[0].innerHTML = box2Width * box2Height;
 
-            if (widths[0] * heights[0] == widths[1] * heights[1]) {
+            if (box1Width * box1Height == box2Width * box2Height) {
                 result.innerHTML = 'Divene er like store';
             }
-            else if (widths[0] * heights[0] > widths[1] * heights[1]) {
+            else if (box1Width * box1Height > box2Width * box2Height) {
                 result.innerHTML = 'Venstre div er større';
             }
-            else if (widths[0] * heights[0] < widths[1] * heights[1]) {
+            else if (box1Width * box1Height < box2Width * box2Height) {
                 result.innerHTML = 'Høyre div er større';
             }
             else {
