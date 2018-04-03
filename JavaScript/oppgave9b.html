@@ -32,27 +32,30 @@
         </tr>
     </table>
     <div id="result"></div>
-
+    <input id="newCode" style="width:100px; visibility: hidden;" value="8521" />
     <script language="javascript">
         var result = document.getElementById('result');
-        var correctCode = '8521';
+        var correctCode = document.getElementById('newCode');
         var enteredSoFar = '';
 
         function codeClick(button) {
             enteredSoFar += button.innerHTML;
-            if (!correctCode.startsWith(enteredSoFar)) {
+            if (!('' + correctCode.value).startsWith(enteredSoFar) && !correctCode.style.visibility == 'visible') {
                 enteredSoFar = '';
                 result.innerHTML = '';
+                correctCode.style.visibility = 'hidden';
             }
 
-            if (enteredSoFar == correctCode) {
+            if (enteredSoFar == correctCode.value) {
                 result.innerHTML = 'ÅPEN!';
+                correctCode.style.visibility = 'visible';
             }
         }
 
         function resetButton() {
             result.innerHTML = '';
             enteredSoFar = '';
+            correctCode.style.visibility = 'hidden';
         }
     </script>
 
