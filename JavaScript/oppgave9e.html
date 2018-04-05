@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        h2 {
+            line-height: 5px;
+        }
+        select {
+            font-size: 16px;
+        }
+        #box {
+            margin-top: 20px;
+            padding: 5px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Velg bakgrunns farge:</h2>
+    <select id="color" onchange="changeColor();">
+        <option value="black">Svart</option>
+        <option value="darkblue">Mørk blå</option>
+        <option value="lightgrey">Lys grå</option>
+        <option value="lightgreen">Lys grønn</option>
+        <option value="red">Rød</option>
+    </select>
+
+    <div id="box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium magna sagittis odio varius, ut consectetur diam cursus. Donec auctor tortor nec odio pulvinar feugiat.</div>
+
+    <script>
+        'use strict';
+
+        var colorSelect = document.getElementById('color');
+        var box = document.getElementById('box');
+
+        changeColor();
+
+        function changeColor() {
+            var color = colorSelect.value;
+            box.style.backgroundColor = color;
+
+            if (color == 'black' || color == 'darkblue') {
+                box.style.color = 'white';
+            }
+            else {
+                box.style.color = 'black';
+            }
+        }
+    </script>
+</body>
+</html>
