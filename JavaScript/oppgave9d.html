@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p>Ferdighet 9d - Valgsetninger - Sammenligne flere ting på en gang (og)</p>
+    <div style="float:left; padding-right:20px;">
+        <div id="info"></div>
+        <ul>
+            <li>Endre på tekstene!</li>
+            <li>Prøv også å fylle ut tall: 11, 101, 102</li>
+        </ul>
+        <input type="text" id="txt1" oninput="findFirst()" value="Per" /><br />
+        <input type="text" id="txt2" oninput="findFirst()" value="Pål" /><br />
+        <input type="text" id="txt3" oninput="findFirst()" value="Espen" /><br />
+    </div>
+    <div style="float:left;padding-left:20px;">
+        <div id="info2"></div>
+        <ul>
+            <li>Endre på tekstene!</li>
+            <li>Prøv også å fylle ut tall: 11, 101, 102</li>
+        </ul>
+        <input type="text" id="txt4" oninput="findFirst2()" value="Per" /><br />
+        <input type="text" id="txt5" oninput="findFirst2()" value="Pål" /><br />
+        <input type="text" id="txt6" oninput="findFirst2()" value="Espen" /><br />
+    </div>
+
+    <script>
+        var infoDiv = document.getElementById('info');
+        var txtDiv1 = document.getElementById('txt1');
+        var txtDiv2 = document.getElementById('txt2');
+        var txtDiv3 = document.getElementById('txt3');
+
+        var info2Div = document.getElementById('info2');
+        var txtDiv4 = document.getElementById('txt4');
+        var txtDiv5 = document.getElementById('txt5');
+        var txtDiv6 = document.getElementById('txt6');
+
+        findFirst();
+        findFirst2();
+
+        function findFirst() {
+            var txt1 = txtDiv1.value;
+            var txt2 = txtDiv2.value;
+            var txt3 = txtDiv3.value;
+
+            infoDiv.innerHTML = 'Om vi sorterer de tre tekstene, er denne den første:<br/>';
+            if (txt1 <= txt2 && txt1 <= txt3) infoDiv.innerHTML += txt1;
+            else if (txt2 <= txt3) infoDiv.innerHTML += txt2;
+            else infoDiv.innerHTML += txt3;
+
+            infoDiv.innerHTML += '<br/>Om vi sorterer de tre tekstene, er denne den andre:<br/>';
+            if (txt1 >= txt2 && txt1 <= txt3) infoDiv.innerHTML += txt1;
+            else if (txt2 <= txt3) infoDiv.innerHTML += txt2;
+            else infoDiv.innerHTML += txt3;
+
+            infoDiv.innerHTML += '<br/>Om vi sorterer de tre tekstene, er denne den tredje:<br/>';
+            if (txt1 >= txt2 && txt1 >= txt3) infoDiv.innerHTML += txt1;
+            else if (txt2 >= txt3) infoDiv.innerHTML += txt2;
+            else infoDiv.innerHTML += txt3;
+        }
+
+        function findFirst2() {
+            var txt4 = txtDiv4.value;
+            var txt5 = txtDiv5.value;
+            var txt6 = txtDiv6.value;
+
+            info2Div.innerHTML = 'Om vi sorterer de tre tekstene, er denne den første:<br/>';
+            if (txt4 <= txt5 && txt4 <= txt6) info2Div.innerHTML += txt4;
+            else if (txt5 <= txt6) info2Div.innerHTML += txt5;
+            else info2Div.innerHTML += txt6;
+        }
+    </script>
+</body>
+</html>
