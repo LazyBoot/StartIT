@@ -1,0 +1,55 @@
+﻿@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerif.ttf) format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerif-Bold.ttf) format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerif-BoldItalic.ttf) format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerif-Italic.ttf) format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerifCondensed.ttf) format('truetype');
+    font-weight: normal;
+    font-stretch: condensed;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerifCondensed-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-stretch: condensed;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerifCondensed-BoldItalic.ttf) format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+    font-stretch: condensed;
+}
+
+@font-face {
+    font-family: 'DejaVu Serif';
+    src: url(DejaVuSerifCondensed-Italic.ttf) format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+    font-stretch: condensed;
+}

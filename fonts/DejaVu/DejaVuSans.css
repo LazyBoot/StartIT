@@ -1,0 +1,55 @@
+﻿@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSans.ttf) format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSans-Bold.ttf) format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSans-BoldOblique.ttf) format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSans-Oblique.ttf) format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSansCondensed.ttf) format('truetype');
+    font-weight: normal;
+    font-stretch: condensed;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSansCondensed-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-stretch: condensed;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSansCondensed-BoldOblique.ttf) format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+    font-stretch: condensed;
+}
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url(DejaVuSansCondensed-Oblique.ttf) format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+    font-stretch: condensed;
+}
