@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://lazyboot.github.io/StartIT/fonts/DejaVu/DejaVuSansMono.css" />
+    <style>
+        body {
+            font-family: 'DejaVu Sans Mono', 'Consolas', 'sans-serif';
+            font-size: 14px;
+        }
+
+        div {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <p>Ferdighet 12 - Funksjoner med returverdi</p>
+    <script>
+        tilfeldigFirkant();
+
+        function tilfeldigFirkant() {
+            var endX = tilfeldigTall(window.innerWidth * 0.2, window.innerWidth);
+            var endY = tilfeldigTall(window.innerHeight * 0.2, window.innerHeight);
+
+            var startX = tilfeldigTall(1, endX * 0.8);
+            var startY = tilfeldigTall(1, endY * 0.8);
+            var bredde = endX - startX;
+            var høyde = endY - startY;
+            var farge = tilfeldigFarge();
+            var divHtml = '<div style="' +
+                delAvStylePx('left', startX) +
+                delAvStylePx('top', startY) +
+                delAvStylePx('width', bredde) +
+                delAvStylePx('height', høyde) +
+                delAvStyle('background-color', farge) +
+                '">' +
+                tilfeldigOrd() +
+                '</div>';
+            document.write(divHtml);
+            if (Math.random() < 0.9) tilfeldigFirkant();
+        }
+
+        function delAvStylePx(navn, verdi) {
+            return delAvStyle(navn, verdi + 'px');
+        }
+
+        function delAvStyle(navn, verdi) {
+            return navn + ':' + verdi + ';';
+        }
+
+        function tilfeldigFarge() {
+            return '#' +
+                tilfeldigTallEllerBokstavABCDEF() +
+                tilfeldigTallEllerBokstavABCDEF() +
+                tilfeldigTallEllerBokstavABCDEF() +
+                tilfeldigTallEllerBokstavABCDEF() +
+                tilfeldigTallEllerBokstavABCDEF() +
+                tilfeldigTallEllerBokstavABCDEF();
+        }
+
+        function tilfeldigTallEllerBokstavABCDEF() {
+            var tall = tilfeldigTall(0, 15);
+            if (tall < 10) return tall;
+            const charCodeA = 'a'.charCodeAt(0);
+            return String.fromCharCode(tall - 10 + charCodeA);
+        }
+
+        function tilfeldigOrd() {
+            return tilfeldigKonsonant() +
+                tilfeldigVokal() +
+                tilfeldigKonsonant() +
+                tilfeldigVokal() +
+                tilfeldigKonsonant();
+        }
+
+        function tilfeldigVokal() {
+            const vokaler = 'aeiouyæøå';
+            var tall = tilfeldigTall(0, vokaler.length - 1);
+            return String.fromCharCode(vokaler.charCodeAt(tall));
+
+        }
+        function tilfeldigKonsonant() {
+            const vokaler = 'aeiouyæøå';
+            var bokstav = tilfeldigBokstav();
+            if (vokaler.indexOf(bokstav) >= 0)
+                return tilfeldigKonsonant();
+            else
+                return bokstav;
+        }
+
+        function tilfeldigBokstav() {
+            var tall = tilfeldigTall(0, 28);
+            switch (tall) {
+                case 26:
+                    return 'æ';
+                    break;
+                case 27:
+                    return 'ø';
+                    break;
+                case 28:
+                    return 'å';
+                    break;
+                default:
+                    const charCodeA = 'a'.charCodeAt(0);
+                    return String.fromCharCode(tall + charCodeA);
+            }
+        }
+
+        function tilfeldigTall(minimum, maksimum) {
+            return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
+        }
+    </script>
+</body>
+</html>
