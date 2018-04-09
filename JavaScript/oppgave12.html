@@ -19,6 +19,8 @@
 <body>
     <p>Ferdighet 12 - Funksjoner med returverdi</p>
     <script>
+        const vokaler = 'aeiouyæøå';
+
         tilfeldigFirkant();
 
         function tilfeldigFirkant() {
@@ -77,13 +79,12 @@
         }
 
         function tilfeldigVokal() {
-            const vokaler = 'aeiouyæøå';
             var tall = tilfeldigTall(0, vokaler.length - 1);
             return String.fromCharCode(vokaler.charCodeAt(tall));
 
         }
+
         function tilfeldigKonsonant() {
-            const vokaler = 'aeiouyæøå';
             var bokstav = tilfeldigBokstav();
             if (vokaler.indexOf(bokstav) >= 0)
                 return tilfeldigKonsonant();
