@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        @import url("https://lazyboot.github.io/StartIT/fonts/DejaVu/DejaVuSansMono.css");
+
+        body {
+            font-family: 'DejaVu Sans Mono', 'Consolas', 'sans-serif';
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body onload="testLog('onload');">
+    <p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
+    <input type="text" onchange="testLog('onchange');" oninput="testLog('oninput');" />
+    <h3 onmouseover="testLog('onmouseover')" onmouseout="testLog('onmouseout');">Test test test</h3>
+    <h2 id="info"></h2>
+
+    <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">Mer informasjon her</a>
+    <script>
+        function testLog(text) {
+            document.getElementById('info').innerHTML += '<li>' + text + '</li>';
+        }
+    </script>
+</body>
+</html>
