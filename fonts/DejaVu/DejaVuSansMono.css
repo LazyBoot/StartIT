@@ -1,25 +1,33 @@
 ﻿@font-face {
     font-family: 'DejaVu Sans Mono';
-    src: url(DejaVuSansMono.ttf) format('truetype');
+    src: local('DejaVu Sans Mono'),
+        local('DejaVuSansMono'),
+        url(DejaVuSansMono.ttf) format('truetype');
     font-weight: normal;
 }
 
 @font-face {
     font-family: 'DejaVu Sans Mono';
-    src: url(DejaVuSansMono-Bold.ttf) format('truetype');
+    src: local('DejaVu Sans Mono Bold'),
+        local('DejaVuSansMono-Bold'),
+        url(DejaVuSansMono-Bold.ttf) format('truetype');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'DejaVu Sans Mono';
-    src: url(DejaVuSansMono-BoldOblique.ttf) format('truetype');
+    src: local('DejaVu Sans Mono Bold Oblique'),
+        local('DejaVuSansMono-BoldOblique'),
+        url(DejaVuSansMono-BoldOblique.ttf) format('truetype');
     font-weight: bold;
     font-style: oblique;
 }
 
 @font-face {
     font-family: 'DejaVu Sans Mono';
-    src: url(DejaVuSansMono-Oblique.ttf) format('truetype');
+    src: local('DejaVu Sans Mono Oblique'),
+        local('DejaVuSansMono-Oblique'),
+        url(DejaVuSansMono-Oblique.ttf) format('truetype');
     font-weight: normal;
     font-style: oblique;
 }
