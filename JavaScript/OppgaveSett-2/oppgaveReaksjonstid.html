@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Oppgave - Reaksjonstid</title>
+    <style>
+        .cirle {
+            border-radius: 50%;
+            background-color: gray;
+            float: left;
+            height: 50px;
+            width: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+        .firstrow {
+            clear: left;
+        }
+        .lightOn {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="cirle firstrow"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+
+    <div class="cirle firstrow"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+
+    <div class="cirle firstrow"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+
+    <div class="cirle firstrow"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+
+    <div class="cirle firstrow"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+    <div class="cirle"></div>
+
+    <div id="result" class="firstrow"></div>
+
+    <script>
+        'use strict';
+
+        var startTime;
+        var elementsList = document.getElementsByClassName('cirle');
+        var result = document.getElementById('result');
+
+        document.body.onload = turnRandomOn;
+        function turnRandomOn() {
+            var randomIndex = Math.floor(Math.random() * elementsList.length);
+            var selectedElement = elementsList[randomIndex];
+            startTime = new Date().getTime();
+
+            selectedElement.classList.add('lightOn');
+            selectedElement.addEventListener('click', clickCirc);
+
+
+        }
+
+        function clickCirc() {
+            this.classList.remove('lightOn');
+            this.removeEventListener('click', clickCirc);
+            var finishTime = new Date().getTime();
+            var spentMilliseconds = Math.floor(finishTime - startTime);
+            var spentSeconds = spentMilliseconds / 1000;
+
+            result.innerHTML = 'Du brukte: ' + spentSeconds + ' sekunder.';
+            turnRandomOn();
+        }
+    </script>
+</body>
+</html>
