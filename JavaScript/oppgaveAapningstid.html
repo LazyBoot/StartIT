@@ -6,14 +6,15 @@
     <title></title>
 </head>
 <body>
-    Dag: <input id="day" onchange="showDayAndTime()" type="range" min="1" max="7" /><br />
+    <!--Dag: <input id="day" onchange="showDayAndTime()" type="range" min="1" max="7" /><br />
     Time: <input id="hour" onchange="showDayAndTime()" type="range" min="0" max="23" /><br />
-    Minutter: <input id="minute" onchange="showDayAndTime()" type="range" min="0" max="59" /><br />
+    Minutter: <input id="minute" onchange="showDayAndTime()" type="range" min="0" max="59" /><br />-->
 
     <div id="dayAndTime" style="padding-top: 20px;"></div>
     <script type="text/javascript">
         'use strict';
 
+        document.body.onload = showDayAndTime;
         function showDayAndTime() {
             var div = document.getElementById('dayAndTime');
             //var day = document.getElementById('day').value;
