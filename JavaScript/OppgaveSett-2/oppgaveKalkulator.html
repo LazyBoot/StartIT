@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Kalkulator</title>
+    <style>
+        div {
+            float: left;
+            background-color: beige;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: helvetica;
+            font-size: 200%;
+            border: #bbbbaa solid 4px;
+            border-radius: 10px;
+        }
+
+        div.resultBox {
+            width: 344px;
+            text-align: right;
+        }
+
+        div.firstInRow {
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="resultBox" class="resultBox"></div>
+
+        <div onclick="addCharacter('7');" class="buttons firstInRow">7</div>
+        <div onclick="addCharacter('8');" class="buttons">8</div>
+        <div onclick="addCharacter('9');" class="buttons">9</div>
+        <div onclick="addCharacter('/');" class="buttons">÷</div>
+
+        <div onclick="addCharacter('4');" class="buttons firstInRow">4</div>
+        <div onclick="addCharacter('5');" class="buttons">5</div>
+        <div onclick="addCharacter('6');" class="buttons">6</div>
+        <div onclick="addCharacter('*');" class="buttons">×</div>
+
+        <div onclick="addCharacter('1');" class="buttons firstInRow">1</div>
+        <div onclick="addCharacter('2');" class="buttons">2</div>
+        <div onclick="addCharacter('3');" class="buttons">3</div>
+        <div onclick="addCharacter('-');" class="buttons">-</div>
+
+        <div onclick="addCharacter('0');" class="buttons firstInRow">0</div>
+        <div onclick="clearResult();" class="buttons">C</div>
+        <div onclick="calculate();" class="buttons">=</div>
+        <div onclick="addCharacter('+');" class="buttons">+</div>
+    <script>
+        'use strict';
+
+        const operators = '+-*/';
+        var resultBox = document.getElementById('resultBox');
+
+        function addCharacter(character) {
+            if (operators.includes(character)) {
+                character = ' ' + character + ' ';
+            }
+            resultBox.innerHTML += character;
+        }
+
+        function clearResult() {
+            resultBox.innerHTML = '';
+        }
+
+        function calculate() {
+            resultBox.innerHTML = eval(resultBox.innerHTML);
+        }
+    </script>
+</body>
+</html>
