@@ -79,7 +79,7 @@
             var spentMilliseconds = Math.floor(finishTime - startTime);
             var spentSeconds = spentMilliseconds / 1000;
 
-            result.innerHTML = 'Du brukte: ' + spentSeconds + ' sekunder.';
+            result.innerHTML = 'Du brukte: ' + spentSeconds.toPrecision(3) + ' sekunder.';
             turnRandomOn();
         }
     </script>
