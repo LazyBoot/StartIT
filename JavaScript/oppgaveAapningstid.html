@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    Dag: <input id="day" onchange="showDayAndTime()" type="range" min="1" max="7" /><br />
+    Time: <input id="hour" onchange="showDayAndTime()" type="range" min="0" max="23" /><br />
+    Minutter: <input id="minute" onchange="showDayAndTime()" type="range" min="0" max="59" /><br />
+
+    <div id="dayAndTime" style="padding-top: 20px;"></div>
+    <script type="text/javascript">
+        'use strict';
+
+        function showDayAndTime() {
+            var div = document.getElementById('dayAndTime');
+            //var day = document.getElementById('day').value;
+            //var hour = document.getElementById('hour').value;
+            //var minute = document.getElementById('minute').value;
+            //var dayNo = parseInt(day);
+
+            var d = new Date();
+            var day;
+            var hour = d.getHours();
+            var minute = d.getMinutes();
+            var dayNo = d.getDay();
+
+            switch (dayNo) {
+                case 1:
+                    day = 'Mandag';
+                    break;
+                case 2:
+                    day = 'Tirsdag';
+                    break;
+                case 3:
+                    day = 'Onsdag';
+                    break;
+                case 4:
+                    day = 'Torsdag';
+                    break;
+                case 5:
+                    day = 'Fredag';
+                    break;
+                case 6:
+                    day = 'Lørdag';
+                    break;
+                case 7:
+                    day = 'Søndag';
+                    break;
+                default:
+            }
+
+            div.innerHTML = day + ' - ' + hour + ':' + minute.toString().padStart(2, '0') + '<br />';
+
+            if (dayNo >= 1 && dayNo <= 4) {
+                if (hour >= 11 && hour < 17) {
+                    div.innerHTML += 'Åpent';
+                }
+                else {
+                    div.innerHTML += 'Stengt';
+                }
+            }
+            else if (dayNo === 5) {
+                if (hour >= 11 && hour < 18) {
+                    div.innerHTML += 'Åpent';
+                }
+                else {
+                    div.innerHTML += 'Stengt';
+                }
+            }
+            else if (dayNo === 6) {
+                if (hour >= 11 && hour < 15) {
+                    div.innerHTML += 'Åpent';
+                }
+                else {
+                    div.innerHTML += 'Stengt';
+                }
+            }
+            else if (dayNo === 7) {
+                div.innerHTML += 'Stengt';
+            }
+        }
+    </script>
+</body>
+</html>
