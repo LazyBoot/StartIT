@@ -62,7 +62,7 @@
         var elementsList = document.getElementsByClassName('cirle');
         var result = document.getElementById('result');
 
-        document.body.onload = turnRandomOn;
+        document.body.addEventListener('load', turnRandomOn());
         function turnRandomOn() {
             var randomIndex = Math.floor(Math.random() * elementsList.length);
             var selectedElement = elementsList[randomIndex];
