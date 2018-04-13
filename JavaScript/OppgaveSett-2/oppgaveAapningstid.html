@@ -47,7 +47,7 @@
                 case 6:
                     day = 'Lørdag';
                     break;
-                case 7:
+                case 0:
                     day = 'Søndag';
                     break;
                 default:
@@ -55,31 +55,16 @@
 
             div.innerHTML = day + ' - ' + hour + ':' + minute.toString().padStart(2, '0') + '<br />';
 
-            if (dayNo >= 1 && dayNo <= 4) {
-                if (hour >= 11 && hour < 17) {
+            if (dayNo >= 1 && dayNo <= 4 && hour >= 11 && hour < 17) {
                     div.innerHTML += 'Åpent';
-                }
-                else {
-                    div.innerHTML += 'Stengt';
-                }
             }
-            else if (dayNo === 5) {
-                if (hour >= 11 && hour < 18) {
+            else if (dayNo === 5 && hour >= 11 && hour < 18) {
                     div.innerHTML += 'Åpent';
-                }
-                else {
-                    div.innerHTML += 'Stengt';
-                }
             }
-            else if (dayNo === 6) {
-                if (hour >= 11 && hour < 15) {
+            else if (dayNo === 6 && hour >= 11 && hour < 15) {
                     div.innerHTML += 'Åpent';
-                }
-                else {
-                    div.innerHTML += 'Stengt';
-                }
             }
-            else if (dayNo === 7) {
+            else {
                 div.innerHTML += 'Stengt';
             }
         }
