@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            background-color: white;
+            padding: 0;
+        }
+
+            td.room {
+                width: 40px;
+                height: 40px;
+            }
+
+            td.wall {
+                background-color: black;
+            }
+
+            td.noWall {
+                background-color: white;
+            }
+
+            td.small {
+                width: 10px;
+                height: 10px;
+            }
+
+            td.wide {
+                width: 40px;
+            }
+
+            td.high {
+                height: 40px;
+            }
+    </style>
+</head>
+<body>
+    <div id="playArea"></div>
+
+    <script>
+        'use strict';
+
+        const size = 15;
+
+        function switchWall(wall) {
+            if (wall.classList.contains('wall')) {
+                wall.classList.remove('wall');
+                wall.classList.add('noWall');
+            }
+            else if (wall.classList.contains('noWall')) {
+                wall.classList.add('wall');
+                wall.classList.remove('noWall');
+            }
+        }
+
+        var playArea = '<table>';
+        for (var i = 0; i < size; i++) {
+            playArea +=  '<tr>';
+            for (var j = 0; j < size; j++) {
+                playArea += '<td class="wall small"></td>';
+                playArea += '<td class= "' + ((i === 0 || Math.random() < 0.5) ? 'wall' : 'noWall') + ' wide" onclick="switchWall(this)"></td>';
+            }
+            playArea += '<td class="wall small"></td></tr>';
+            playArea += '<tr>';
+
+            for (var j = 0; j < size; j++) {
+                playArea += '<td class="' + ((j === 0 || Math.random() < 0.5) ? 'wall' : 'noWall') + ' high" onclick="switchWall(this)"></td>';
+                playArea += '<td class="room"></td>';
+            }
+
+            playArea += '<td class="wall high"></td></tr>';
+        }
+
+        for (var j = 0; j < size; j++) {
+            playArea += '<td class="wall small"></td>';
+            playArea += '<td class= "wall wide"></td>';
+        }
+        playArea += '<td class="wall small"></td></tr></table>';
+
+        document.getElementById('playArea').innerHTML = playArea;
+        console.log('Playarea Generated');
+    </script>
+</body>
+</html>
