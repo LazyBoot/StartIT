@@ -9,7 +9,7 @@
         body {
             font-family: 'DejaVu Sans Mono', 'Courier New', 'Courier', monospace;
         }
-        div {
+        #grid div {
             background-color: gray;
             margin: 5px;
             padding: 10px;
@@ -24,18 +24,17 @@
 </head>
 <body>
     <h1>Tre På Rad</h1>
-    <div onclick="clickDiv(this);" style="clear: left;"></div>
-    <div onclick="clickDiv(this);"></div>
-    <div onclick="clickDiv(this);"></div>
-
-    <div onclick="clickDiv(this);" style="clear: left;"></div>
-    <div onclick="clickDiv(this);"></div>
-    <div onclick="clickDiv(this);"></div>
-
-    <div onclick="clickDiv(this);" style="clear: left;"></div>
-    <div onclick="clickDiv(this);"></div>
-    <div onclick="clickDiv(this);"></div>
-
+    <div id="grid">
+        <div onclick="clickDiv(this);" style="clear: left;"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);" style="clear: left;"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);" style="clear: left;"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);"></div>
+    </div>
     <div style="clear: left; background-color:white;width:auto;" id="output"></div>
     <div style="clear: left; background-color:white;width:auto;font-size:16px;visibility:hidden;" id="restart"><a href="javascript:location.reload();">Start på nytt</a></div>
     
@@ -44,6 +43,7 @@
         'use strict';
 
         var isGameStopped = false;
+        var divs = document.getElementById('grid').getElementsByTagName('div');
 
         function clickDiv(clickedDiv) {
             // Place X
@@ -57,12 +57,11 @@
 
             // Place O
             if (isGameStopped) return;
-            var divs1 = document.getElementsByTagName('div');
             var divs2 = new Array();
 
-            for (var i = 0; i < 9; i++) {
-                if (divs1[i].innerHTML !== 'x' && divs1[i].innerHTML !== 'o') {
-                    divs2.push(divs1[i]);
+            for (var i = 0; i < divs.length; i++) {
+                if (divs[i].innerHTML !== 'x' && divs[i].innerHTML !== 'o') {
+                    divs2.push(divs[i]);
                 }
             }
 
@@ -80,7 +79,6 @@
         }
 
         function checkWin(player, clickedDiv) {
-            var divs = document.getElementsByTagName('div');
             var outDiv = document.getElementById('output');
 
             var hasWon = false;
@@ -108,7 +106,6 @@
         }
 
         function checkDivs(div0, div1, div2) {
-            var divs = document.getElementsByTagName('div');
             if ((divs[div0].innerHTML === 'x' || divs[div0].innerHTML === 'o') && divs[div0].innerHTML === divs[div1].innerHTML && divs[div0].innerHTML === divs[div2].innerHTML)
                 return true;
             return false;
