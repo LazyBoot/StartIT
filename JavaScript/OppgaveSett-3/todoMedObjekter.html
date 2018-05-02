@@ -15,6 +15,7 @@
         <div>
             <table class="table" id="mainTable">
                 <tr>
+                    <th>Gjort</th>
                     <th>Beskrivelse</th>
                     <th>Dato gjort</th>
                     <th>Dato planlagt</th>
@@ -51,17 +52,27 @@
             var tableHeaderRow = table.rows[0].outerHTML;
             table.innerHTML = tableHeaderRow;
             for (var i = 0; i < allItems.length; i++) {
-                var row = table.insertRow();
-                var cellDescription = row.insertCell();
-                var cellDateDone = row.insertCell();
-                var cellDatePlanned = row.insertCell();
-                var cellDelete = row.insertCell();
-                cellDescription.innerHTML = allItems[i].description;
-                cellDatePlanned.innerHTML = allItems[i].datePlanned;
-                cellDelete.innerHTML =
-                    '<td><button class="btn-primary" onclick="editItem(' + i + ')">Edit</button>' +
-                    '<button class="btn-danger" onclick="deleteItem(' + i + ')">delete</button></td>';
+                showRow(i);
             }
+
+        }
+
+        function showRow(i) {
+            var row = table.rows[i + 1] ? table.rows[i + 1] : table.insertRow();;
+            row.innerHTML = '';
+            var cellDone = row.insertCell();
+            var cellDescription = row.insertCell();
+            var cellDateDone = row.insertCell();
+            var cellDatePlanned = row.insertCell();
+            var cellDelete = row.insertCell();
+            cellDone.innerHTML = '<input type="checkbox" onchange="checkDone(this, ' + i + ')" ' + (allItems[i].isDone ? 'checked ' : '') + '/>';
+            cellDescription.innerHTML = allItems[i].description;
+            cellDateDone.innerHTML = allItems[i].dateDone ? allItems[i].dateDone : '';
+            cellDatePlanned.innerHTML = allItems[i].datePlanned;
+            cellDelete.innerHTML =
+                '<button class="btn-primary" onclick="editItem(' + i + ')">Edit</button>' +
+                '<button class="btn-danger" onclick="deleteItem(' + i + ')">delete</button>';
+            row.style.color = allItems[i].color ? allItems[i].color : '#000000';
 
         }
 
@@ -81,23 +92,38 @@
         function editItem(index) {
             var row = table.rows[index + 1];
             var numCells = row.cells.length - 1;
-            for (var i = 0; i < numCells; i++) {
+
+            row.cells[0].innerHTML = '<input type="color" value="' + (allItems[index].color ? allItems[index].color : '#000000') + '" />';
+            for (var i = 1; i < numCells; i++) {
                 row.cells[i].innerHTML = '<input type="text" value="' + row.cells[i].innerText + '" />';
             }
             row.cells[numCells].innerHTML =
-                '<button class="btn-primary" onclick="saveEdit(' + index + ');">Save</button>';
+                '<button class="btn-primary" onclick="saveEdit(' + index + ');">Save</button>' +
+                '<button class="btn-danger" onclick="cancelEdit(' + index + ');">Cancel</button>';
         }
 
         function saveEdit(index) {
             var row = table.rows[index + 1];
-            var numCells = row.cells.length - 1;
-            var inputs = Array.from(row.getElementsByTagName('input'));
-            for (var i = 0; i < numCells; i++) {
-                row.cells[i].innerHTML = inputs[i].value;
+            var inputs = row.getElementsByTagName('input');
+
+            allItems[index].description = inputs[1].value;
+            allItems[index].dateDone = inputs[2].value;
+            allItems[index].datePlanned = inputs[3].value;
+            allItems[index].color = inputs[0].value;
+            showRow(index);
+        }
+
+        function cancelEdit(index) {
+            showRow(index);
+        }
+
+        function checkDone(checkBox, index) {
+            allItems[index].isDone = checkBox.checked;
+            if (checkBox.checked) {
+                d = new Date();
+                allItems[index].dateDone = d.getFullYear() + '-' + d.getMonth().toString().padStart(2, '0') + '-' + d.getDate().toString().padStart(2, '0');
             }
-            row.cells[numCells].innerHTML = 
-                '<td><button class="btn-primary" onclick="editItem(' + index + ')">Edit</button>' +
-                '<button class="btn-danger" onclick="deleteItem(' + index + ')">delete</button></td>';
+            showRow(index);
         }
     </script>
 </body>
