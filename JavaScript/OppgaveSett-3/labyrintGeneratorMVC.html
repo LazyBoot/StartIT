@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            background-color: white;
+            padding: 0;
+        }
+
+            td.room {
+                width: 40px;
+                height: 40px;
+            }
+
+            td.wall {
+                background-color: black;
+            }
+
+            td.noWall {
+                background-color: white;
+            }
+
+            td.small {
+                width: 10px;
+                height: 10px;
+            }
+
+            td.wide {
+                width: 40px;
+            }
+
+            td.high {
+                height: 40px;
+            }
+    </style>
+</head>
+<body>
+    <div id="playArea"></div>
+
+    <script>
+        'use strict';
+
+        var mazeModel = initPlayArea(15);
+        showPlayArea();
+
+        function initPlayArea(size) {
+            var mazeModel = {};
+            mazeModel.size = size;
+            mazeModel.rows = [];
+            for (var i = 0; i <= size * 2; i++) {
+                var row = i % 2 === 0 ?
+                    initRow(size, i, 'wall small', 'wall wide') :
+                    initRow(size, i, 'wall high', 'room');
+                mazeModel.rows.push(row);
+            }
+            mazeModel.rows[0][Math.floor(Math.random() * size) * 2 + 1].isOpen = true;
+            mazeModel.rows[size * 2][Math.floor(Math.random() * size) * 2 + 1].isOpen = true;
+            return mazeModel;
+        }
+
+        function initRow(size, rowIndex, alt1, alt2) {
+            var row = []
+            for (var i = 0; i <= size * 2; i++) {
+                var cell = {}
+                cell.type = i % 2 === 0 ? alt1 : alt2;
+
+                if (cell.type === 'wall small' ||
+                    i === 0 ||
+                    i === size * 2 ||
+                    rowIndex === 0 ||
+                    rowIndex === size * 2) {
+                    cell.isOpen = false;
+                }
+                else if (cell.type === 'room') {
+                    cell.isOpen = true;
+                }
+                else {
+                    cell.isOpen = Math.random() < 0.5;
+                }
+                row.push(cell);
+            }
+            return row;
+        }
+
+        function switchWall(row, cell) {
+            var cellModel = mazeModel.rows[row][cell];
+            cellModel.isOpen = !cellModel.isOpen;
+            showPlayArea();
+        }
+
+        function showPlayArea() {
+            var playArea = '<table>';
+            var rows = mazeModel.rows;
+            for (var rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+                playArea += '<tr>';
+                var rowModel = rows[rowIndex];
+                for (var cellIndex = 0; cellIndex < rowModel.length; cellIndex++) {
+                    var cellModel = rowModel[cellIndex];
+                    var cssClass = '';
+                    var onClick = 'onclick="switchWall(' + rowIndex + ', ' + cellIndex + ')" ';
+
+                    if (cellModel.type === 'room') {
+                        cssClass = 'room';
+                        onClick = '';
+                    }
+                    else if (cellModel.type === 'wall small') {
+                        cssClass = 'wall small';
+                        onClick = '';
+                    }
+                    else if (cellModel.type === 'wall wide') {
+                        cssClass = (cellModel.isOpen ? 'nowall' : 'wall') + ' wide';
+                    }
+                    else if (cellModel.type === 'wall high') {
+                        cssClass = (cellModel.isOpen ? 'nowall' : 'wall') + ' high';
+                    }
+                    playArea += '<td ' + onClick + 'class="' + cssClass + '"></td>';
+                }
+                playArea += '</tr>'
+            }
+            playArea += '</table>'
+
+            document.getElementById('playArea').innerHTML = playArea;
+        }
+    </script>
+</body>
+</html>
