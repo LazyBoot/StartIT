@@ -91,13 +91,12 @@
 
         function editItem(index) {
             var row = table.rows[index + 1];
-            var numCells = row.cells.length - 1;
 
             row.cells[0].innerHTML = '<input type="color" value="' + (allItems[index].color ? allItems[index].color : '#000000') + '" />';
-            for (var i = 1; i < numCells; i++) {
-                row.cells[i].innerHTML = '<input type="text" value="' + row.cells[i].innerText + '" />';
-            }
-            row.cells[numCells].innerHTML =
+            row.cells[1].innerHTML = '<input type="text" value="' + (allItems[index].description ? allItems[index].description : '') + '" />';
+            row.cells[2].innerHTML = '<input type="text" value="' + (allItems[index].dateDone ? allItems[index].dateDone : '') + '" />';
+            row.cells[3].innerHTML = '<input type="text" value="' + (allItems[index].datePlanned ? allItems[index].datePlanned : '') + '" />';
+            row.cells[4].innerHTML =
                 '<button class="btn-primary" onclick="saveEdit(' + index + ');">Save</button>' +
                 '<button class="btn-danger" onclick="cancelEdit(' + index + ');">Cancel</button>';
         }
