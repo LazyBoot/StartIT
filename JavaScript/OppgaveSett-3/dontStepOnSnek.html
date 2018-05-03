@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table {
+            border: 1px solid black;
+        }
+        td {
+            width: 10px;
+            height: 10px;
+        }
+
+            td.snake {
+                background-color: blueviolet;
+            }
+
+            td.food {
+                    background-color: greenyellow;
+            }
+    </style>
+</head>
+<body onkeydown="moveSnek(event);">
+    <table id="snakeTable"></table>
+    <script>
+        'use strict';
+
+        var snakeModel;
+        initModel();
+        updateView();
+
+        setInterval(move, 300);
+
+        function updateView() {
+            var snakeTable = document.getElementById('snakeTable');
+            snakeTable.innerHTML = '';
+
+            for (var rowI = 0; rowI < snakeModel.size; rowI++) {
+                var tr = snakeTable.insertRow();
+                for (var colI = 0; colI < snakeModel.size; colI++) {
+                    var td = tr.insertCell();
+                }
+            }
+
+            var bodyPart = snakeModel.snakeHead;
+            while (bodyPart != null) {
+                var td = snakeTable.rows[bodyPart.y].cells[bodyPart.x];
+                td.classList.add('snake');
+                bodyPart = bodyPart.nextBodyPart;
+            }
+
+            var food = snakeModel.food;
+            var td = snakeTable.rows[food.y].cells[food.x];
+            td.classList.add('food');
+        }
+
+        function initModel() {
+            snakeModel = { size: 30 };
+            snakeModel.snakeHead = createRandomPos();
+            snakeModel.food = createRandomPos();
+            snakeModel.growSnek = 0;
+            snakeModel.nextBodyPart = null;
+        }
+
+        function createRandomPos() {
+            return {
+                x: Math.floor(Math.random() * snakeModel.size),
+                y: Math.floor(Math.random() * snakeModel.size)
+
+            };
+        }
+
+        function createSnakeHead() {
+            return {
+                x: snakeModel.snakeHead.x + snakeModel.direction.x,
+                y: snakeModel.snakeHead.y + snakeModel.direction.y,
+                nextBodyPart: snakeModel.snakeHead
+            };
+        }
+
+        function move() {
+            if (!snakeModel.direction) return;
+            snakeModel.snakeHead = createSnakeHead();;
+            if (snakeModel.growSnek > 0) {
+                snakeModel.growSnek--;
+            }
+            else {
+                var bodyPart = snakeModel.snakeHead;
+                var lastBodyPart = null;
+                while (bodyPart.nextBodyPart != null) {
+                    lastBodyPart = bodyPart;
+                    bodyPart = bodyPart.nextBodyPart;
+                }
+                if (lastBodyPart != null) {
+                    lastBodyPart.nextBodyPart = null;
+                }
+            }
+
+            if (snakeModel.snakeHead.x === snakeModel.food.x && snakeModel.snakeHead.y === snakeModel.food.y) {
+                snakeModel.food = createRandomPos();
+                snakeModel.growSnek++;
+            }
+
+            updateView();
+        }
+
+        function moveSnek(event) {
+            switch (event.keyCode) {
+                case 37: // Left
+                    snakeModel.direction = { x: -1, y: 0 };
+                    break;
+                case 39: // Right
+                    snakeModel.direction = { x: 1, y: 0 };
+                    break;
+                case 38: // Up
+                    snakeModel.direction = { x: 0, y: -1 };
+                    break;
+                case 40: // Down
+                    snakeModel.direction = { x: 0, y: 1 };
+                    break;
+                default:
+            }
+        }
+    </script>
+</body>
+</html>
