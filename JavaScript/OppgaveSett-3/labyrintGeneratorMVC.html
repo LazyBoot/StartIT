@@ -71,11 +71,13 @@
                 var cell = {}
                 cell.type = i % 2 === 0 ? alt1 : alt2;
 
-                if (cell.type === 'wall small' ||
-                    i === 0 ||
-                    i === size * 2 ||
-                    rowIndex === 0 ||
-                    rowIndex === size * 2) {
+                if (
+                    cell.type === 'wall small'
+                    || i === 0
+                    || i === size * 2
+                    || rowIndex === 0
+                    || rowIndex === size * 2
+                ) {
                     cell.isOpen = false;
                 }
                 else if (cell.type === 'room') {

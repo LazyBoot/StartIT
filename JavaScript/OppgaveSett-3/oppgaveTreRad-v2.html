@@ -84,14 +84,14 @@
             var hasWon = false;
 
             hasWon =
-                checkDivs(0, 1, 2) ||
-                checkDivs(3, 4, 5) ||
-                checkDivs(6, 7, 8) ||
-                checkDivs(0, 3, 6) ||
-                checkDivs(1, 4, 7) ||
-                checkDivs(2, 5, 8) ||
-                checkDivs(0, 4, 8) ||
-                checkDivs(2, 4, 6);
+                checkDivs(0, 1, 2)
+                || checkDivs(3, 4, 5)
+                || checkDivs(6, 7, 8)
+                || checkDivs(0, 3, 6)
+                || checkDivs(1, 4, 7)
+                || checkDivs(2, 5, 8)
+                || checkDivs(0, 4, 8)
+                || checkDivs(2, 4, 6);
 
             if (hasWon) {
                 if (player === 'x') {
@@ -106,8 +106,11 @@
         }
 
         function checkDivs(div0, div1, div2) {
-            if ((divs[div0].innerHTML === 'x' || divs[div0].innerHTML === 'o') && divs[div0].innerHTML === divs[div1].innerHTML && divs[div0].innerHTML === divs[div2].innerHTML)
-                return true;
+            if (
+                (divs[div0].innerHTML === 'x' || divs[div0].innerHTML === 'o')
+                && divs[div0].innerHTML === divs[div1].innerHTML
+                && divs[div0].innerHTML === divs[div2].innerHTML
+            ) return true;
             return false;
         }
 
