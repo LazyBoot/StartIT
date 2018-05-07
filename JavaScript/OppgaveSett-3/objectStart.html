@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        text {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 250%;
+        }
+    </style>
+</head>
+<body>
+    <svg width="100%" height="50" viewport="0 0 100 10">
+        <rect x="0" y="0" width="100%" height="100%" fill="lightgray" />
+        <g id="texts"></g>
+    </svg>
+    <br />
+    <script src="SwingingText.js"></script>
+    <script>
+        var objects = [
+            new SwingingText(1, 'txtTerje', 'Terje', 'green'),
+            new SwingingText(3, 'txtTurboTerje', 'TurboTerje', 'blue'),
+            new SwingingText(2, 'txtMerTerje', 'Mer Terje', 'red'),
+            new SwingingText(4, 'txtSuperTerje', 'SuperTerje', 'yellow')
+        ];
+
+        init();
+        setInterval(move, 30);
+
+        function init() {
+            var texts = document.getElementById('texts');
+            for (var i in objects) {
+                texts.innerHTML += objects[i].getHtml();
+            }
+        }
+
+        function move() {
+            for (var i in objects) {
+                var object = objects[i];
+                object.moveAndGetX();
+            }
+        }
+    </script>
+</body>
+</html>
