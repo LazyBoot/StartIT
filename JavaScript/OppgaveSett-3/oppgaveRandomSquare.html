@@ -61,12 +61,8 @@
                 this._box = box;
             }
 
-            getHTML(i) {
-                return `<rect x="${this._box.getX()}" y="${this._box.getY()}" width="${this._box.getWidth()}" height="${this._box.getHeight()}" fill="${this._box.getColor()}" onclick="removeBox(${i})" />`;
-            }
-
             getRect() {
-                var rect = document.createElement('rect');
+                var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
                 rect.setAttribute('x', this._box.getX());
                 rect.setAttribute('y', this._box.getY());
                 rect.setAttribute('width', this._box.getWidth());
@@ -84,13 +80,14 @@
 
             show() {
                 var boxes = this._boxes.getBoxes();
-                var html = '';
+                this._svg.innerHTML = '';
                 for (let i in boxes) {
                     let box = boxes[i]
                     let boxView = new BoxView(box);
-                    html += boxView.getHTML(i);
+                    let rect = boxView.getRect(i);
+                    rect.addEventListener('click', function () { removeBox(i) });
+                    this._svg.appendChild(rect);
                 }
-                this._svg.innerHTML = html;
             }
         }
 
