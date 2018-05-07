@@ -79,15 +79,18 @@
         class BoxSetView {
             constructor(boxSet) {
                 this._svg = document.getElementsByTagName('svg')[0];
-                this._boxes = boxSet.getBoxes();
+                this._boxes = boxSet;
             }
 
             show() {
-                this._svg.innerHTML = '';
-                this._boxes.forEach((box,i) => {
-                    var boxView = new BoxView(box);
-                    this._svg.innerHTML += boxView.getHTML(i);
-                });
+                var boxes = this._boxes.getBoxes();
+                var html = '';
+                for (let i in boxes) {
+                    let box = boxes[i]
+                    let boxView = new BoxView(box);
+                    html += boxView.getHTML(i);
+                }
+                this._svg.innerHTML = html;
             }
         }
 
