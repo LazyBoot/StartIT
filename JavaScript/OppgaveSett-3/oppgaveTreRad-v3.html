@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        @import url("https://lazyboot.github.io/StartIT/fonts/DejaVu/DejaVuSansMono.css");
+        body {
+            font-family: 'DejaVu Sans Mono', 'Courier New', 'Courier', monospace;
+        }
+        #grid div {
+            background-color: gray;
+            margin: 5px;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            float: left;
+            text-align: center;
+            text-anchor: middle;
+            font-size: 38px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tre På Rad</h1>
+    <div id="grid">
+        <div onclick="clickDiv(this);" style="clear: left;"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);" style="clear: left;"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);" style="clear: left;"></div>
+        <div onclick="clickDiv(this);"></div>
+        <div onclick="clickDiv(this);"></div>
+    </div>
+    <div style="clear:left;" id="output"></div>
+    <div style="visibility:hidden;" id="restart"><a href="javascript:location.reload();">Start på nytt</a></div>
+    
+
+    <script>
+        'use strict';
+
+        var isGameStopped = false;
+        var divs = document.getElementById('grid').getElementsByTagName('div');
+
+        function clickDiv(clickedDiv) {
+            // Place X
+            if (isGameStopped) return;
+            if (clickedDiv.innerHTML === 'x' || clickedDiv.innerHTML === 'o') {
+                return;
+            }
+            clickedDiv.innerHTML = 'x';
+
+            checkWin('x', clickedDiv);
+
+            // Place O
+            if (isGameStopped) return;
+            var divs2 = new Array();
+
+            for (var i = 0; i < divs.length; i++) {
+                if (divs[i].innerHTML !== 'x' && divs[i].innerHTML !== 'o') {
+                    divs2.push(divs[i]);
+                }
+            }
+
+            if (divs2.length > 0) {
+                var index = Math.floor(Math.random() * divs2.length);
+                divs2[index].innerHTML = 'o';
+                divs2[index].style.color = 'blue';
+            }
+            else {
+                document.getElementById('output').innerHTML = 'Ingen vant :(';
+                stopGame();
+            }
+
+            checkWin('o', divs2[index]);
+        }
+
+        function checkWin(player, clickedDiv) {
+            var outDiv = document.getElementById('output');
+
+            var hasWon = false;
+
+            hasWon =
+                checkDivs(0, 1, 2)
+                || checkDivs(3, 4, 5)
+                || checkDivs(6, 7, 8)
+                || checkDivs(0, 3, 6)
+                || checkDivs(1, 4, 7)
+                || checkDivs(2, 5, 8)
+                || checkDivs(0, 4, 8)
+                || checkDivs(2, 4, 6);
+
+            if (hasWon) {
+                if (player === 'x') {
+                    outDiv.innerHTML = 'Du vant!';
+                    stopGame();
+                }
+                else if (player === 'o') {
+                    outDiv.innerHTML = 'Datamaskinen vant!';
+                    stopGame();
+                }
+            }
+        }
+
+        function checkDivs(div0, div1, div2) {
+            if (
+                (divs[div0].innerHTML === 'x' || divs[div0].innerHTML === 'o')
+                && divs[div0].innerHTML === divs[div1].innerHTML
+                && divs[div0].innerHTML === divs[div2].innerHTML
+            ) return true;
+            return false;
+        }
+
+        function stopGame() {
+            var restart = document.getElementById('restart');
+            restart.style.visibility = 'visible';
+            isGameStopped = true;
+        }
+
+    </script>
+</body>
+</html>
