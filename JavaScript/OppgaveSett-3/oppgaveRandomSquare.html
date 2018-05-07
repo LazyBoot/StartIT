@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <svg width="1200" height="800">
+    </svg>
+    <script>
+        class Box {
+            constructor() {
+                this._color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                this._x = Math.floor(Math.random() * 600);
+                this._y = Math.floor(Math.random() * 400);
+                this._width = 100 + Math.floor(Math.random() * 500);
+                this._height = 100 + Math.floor(Math.random() * 300);
+            }
+
+            getX() {
+                return this._x;
+            }
+
+            getY() {
+                return this._y;
+            }
+
+            getWidth() {
+                return this._width;
+            }
+
+            getHeight() {
+                return this._height;
+            }
+
+            getColor() {
+                return this._color;
+            }
+        }
+
+        class BoxSet {
+            constructor() {
+                this._randomBoxes = [];
+                for (var i = 0; i < (Math.random() * 9 + 1); i++) {
+                    this._randomBoxes.push(new Box());
+                }
+            }
+
+            getBoxes() {
+                return this._randomBoxes;
+            }
+
+            remove(i) {
+                this._randomBoxes.splice(i, 1);
+            }
+        }
+
+        class BoxView {
+            constructor(box) {
+                this._box = box;
+            }
+
+            getHTML(i) {
+                return `<rect x="${this._box.getX()}" y="${this._box.getY()}" width="${this._box.getWidth()}" height="${this._box.getHeight()}" fill="${this._box.getColor()}" onclick="removeBox(${i})" />`;
+            }
+
+            getRect() {
+                var rect = document.createElement('rect');
+                rect.setAttribute('x', this._box.getX());
+                rect.setAttribute('y', this._box.getY());
+                rect.setAttribute('width', this._box.getWidth());
+                rect.setAttribute('height', this._box.getHeight());
+                rect.setAttribute('fill', this._box.getColor());
+                return rect;
+            }
+        }
+
+        class BoxSetView {
+            constructor(boxSet) {
+                this._svg = document.getElementsByTagName('svg')[0];
+                this._boxes = boxSet.getBoxes();
+            }
+
+            show() {
+                this._svg.innerHTML = '';
+                this._boxes.forEach((box,i) => {
+                    var boxView = new BoxView(box);
+                    this._svg.innerHTML += boxView.getHTML(i);
+                });
+            }
+        }
+
+        function removeBox(i) {
+            boxSet.remove(i);
+            boxSetView.show();
+        }
+
+        var boxSet = new BoxSet();
+        var boxSetView = new BoxSetView(boxSet);
+
+        boxSetView.show();
+    </script>
+</body>
+</html>
