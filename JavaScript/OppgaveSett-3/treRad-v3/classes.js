@@ -183,3 +183,9 @@ class GameController {
         updateView();
     }
 }
+
+setTimeout(function () {
+    alert(`Ok, I'll start then`);
+    game.setO();
+    updateView();
+}, 120000);
