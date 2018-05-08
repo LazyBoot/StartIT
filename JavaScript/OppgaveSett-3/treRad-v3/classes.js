@@ -155,7 +155,7 @@ class GameView {
         if (game.isStopped()) {
             let output = document.getElementById('output');
             if (output === null) {
-                let output = document.createElement('div');
+                output = document.createElement('div');
                 output.setAttribute('id', 'output');
             }
             this._gameBoard.parentNode.appendChild(output);
