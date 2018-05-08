@@ -169,10 +169,10 @@ class GameView {
     getOutputField() {
         if (this._outputField === undefined || this._outputField === null) {
             this._outputField = document.createElement('div');
-            this._gameBoard.appendChild(this._outputField);
             this._outputField.classList.add('first');
         }
-        return this._outputField; 
+        this._gameBoard.appendChild(this._outputField);
+        return this._outputField;
     }
 }
 
