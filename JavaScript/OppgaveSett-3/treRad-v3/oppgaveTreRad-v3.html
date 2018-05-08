@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+    <h1>Tre På Rad</h1>
+    <div id="grid">
+    </div>
+    <div class="first" id="output"></div>
+    <div style="visibility:hidden;" id="restart"><a href="javascript:location.reload();">Start på nytt</a></div>
+    
+    <script src="classes.js"></script>
+    <script>
+        'use strict';
+
+        let game = new Game();
+        let gameView = new GameView(game);
+        let gameController = new GameController(game);
+        updateView();
+
+        function updateView() {
+            gameView.show();
+        }
+    </script>
+</body>
+</html>
