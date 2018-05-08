@@ -122,6 +122,9 @@
                     else if (cellModel.type === 'wall high') {
                         cssClass = (cellModel.isOpen ? 'nowall' : 'wall') + ' high';
                     }
+                    if (rowIndex === 0 || rowIndex === rows.length - 1 || cellIndex === 0 || cellIndex === rowModel.length - 1) {
+                        onClick = '';
+                    }
                     playArea += '<td ' + onClick + 'class="' + cssClass + '"></td>';
                 }
                 playArea += '</tr>'
