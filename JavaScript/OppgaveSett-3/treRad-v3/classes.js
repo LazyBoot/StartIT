@@ -179,13 +179,14 @@ class GameController {
     }
 
     setX(index) {
+        clearTimeout(timeout);
         this._game.setX(index);
         updateView();
     }
 }
 
-setTimeout(function () {
-    alert(`Ok, I'll start then`);
+var timeout = setTimeout(function () {
+    alert(`Ok, I'll start then.`);
     game.setO();
     updateView();
-}, 120000);
+}, 60000);
