@@ -135,6 +135,7 @@ class GameView {
         this._game = game;
         this._gameBoard = document.getElementById(gameBoard);
         this._cellViews = []
+        this._outputField;
 
         let cells = game.getCells();
         for (let i in cells) {
@@ -153,13 +154,7 @@ class GameView {
         }
 
         if (game.isStopped()) {
-            let output = document.getElementById('output');
-            if (output === null) {
-                output = document.createElement('div');
-                output.setAttribute('id', 'output');
-            }
-            this._gameBoard.parentNode.appendChild(output);
-            output.classList.add('first');
+            let output = this.getOutputField();
             if (game.getWinner === null) {
                 output.innerHTML = 'Ingen vant :(';
             }
@@ -168,6 +163,15 @@ class GameView {
             }
             output.innerHTML += '<br /><a href="javascript:gameController.restart()">Start på nytt<a>';
         }
+    }
+
+    getOutputField() {
+        if (this._outputField === undefined || this._outputField === null) {
+            this._outputField = document.createElement('div');
+            this._gameBoard.parentElement.appendChild(this._outputField);
+            this._outputField.classList.add('first');
+        }
+        return this._outputField; 
     }
 }
 
@@ -188,7 +192,7 @@ class GameController {
 }
 
 var timeout = setTimeout(function () {
-    alert(`Ok, I'll start then.`);
+    gameView.getOutputField().innerHTML = `Ok, I guess I'll start then.`;
     game.setO();
     updateView();
 }, 60000);
