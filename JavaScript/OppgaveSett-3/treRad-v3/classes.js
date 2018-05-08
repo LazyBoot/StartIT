@@ -50,6 +50,7 @@ class CellView {
         if (this._cell.isFirstInRow())
             cell.classList.add('first');
         cell.classList.add('color' + content.toUpperCase());
+        cell.classList.add('gameboard');
         cell.addEventListener('click', function () { gameController.setX(index) });
         cell.innerHTML = content;
 
@@ -91,6 +92,8 @@ class Game {
             let index = Math.floor(Math.random() * validCells.length);
             validCells[index].setO();
         }
+        else
+            this._isGameStopped = true;
         this.checkWin();
     }
 
@@ -146,8 +149,6 @@ class GameView {
 
     show() {
         this._gameBoard.innerHTML = '';
-        if (!this._gameBoard.classList.contains('gameboard'))
-            this._gameBoard.classList.add('gameboard');
         for (let i in this._cellViews) {
             let cellView = this._cellViews[i];
             this._gameBoard.appendChild(cellView.getCell());
@@ -155,7 +156,7 @@ class GameView {
 
         if (game.isStopped()) {
             let output = this.getOutputField();
-            if (game.getWinner === null) {
+            if (game.getWinner() === null) {
                 output.innerHTML = 'Ingen vant :(';
             }
             else {
@@ -168,7 +169,7 @@ class GameView {
     getOutputField() {
         if (this._outputField === undefined || this._outputField === null) {
             this._outputField = document.createElement('div');
-            this._gameBoard.parentElement.appendChild(this._outputField);
+            this._gameBoard.appendChild(this._outputField);
             this._outputField.classList.add('first');
         }
         return this._outputField; 
