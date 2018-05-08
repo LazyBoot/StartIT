@@ -4,7 +4,7 @@ body {
     font-family: 'DejaVu Sans Mono', 'Courier New', 'Courier', monospace;
 }
 
-#grid div {
+.gameboard > div {
     background-color: gray;
     margin: 5px;
     padding: 10px;

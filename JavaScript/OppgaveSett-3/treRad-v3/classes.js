@@ -131,9 +131,9 @@ class Game {
 }
 
 class GameView {
-    constructor(game) {
+    constructor(game, gameBoard) {
         this._game = game;
-        this._gameBoard = document.getElementById('grid');
+        this._gameBoard = document.getElementById(gameBoard);
         this._cellViews = []
 
         let cells = game.getCells();
@@ -145,6 +145,8 @@ class GameView {
 
     show() {
         this._gameBoard.innerHTML = '';
+        if (!this._gameBoard.classList.contains('gameboard'))
+            this._gameBoard.classList.add('gameboard');
         for (let i in this._cellViews) {
             let cellView = this._cellViews[i];
             this._gameBoard.appendChild(cellView.getCell());
