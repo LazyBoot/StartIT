@@ -42,7 +42,8 @@
         class BoxSet {
             constructor() {
                 this._randomBoxes = [];
-                for (var i = 0; i < (Math.random() * 9 + 1); i++) {
+                let numBoxes = Math.floor(Math.random() * 10) + 1;
+                for (var i = 0; i < numBoxes ; i++) {
                     this._randomBoxes.push(new Box());
                 }
             }
