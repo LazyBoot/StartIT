@@ -92,8 +92,10 @@ class Game {
             let index = Math.floor(Math.random() * validCells.length);
             validCells[index].setO();
         }
-        else
+        if (validCells.length <= 1) {
             this._isGameStopped = true;
+        }
+
         this.checkWin();
     }
 
