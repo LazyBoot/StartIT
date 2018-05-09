@@ -63,11 +63,11 @@
 
             getRect() {
                 var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-                rect.setAttribute('x', this._box.getX());
-                rect.setAttribute('y', this._box.getY());
-                rect.setAttribute('width', this._box.getWidth());
-                rect.setAttribute('height', this._box.getHeight());
-                rect.setAttribute('fill', this._box.getColor());
+                rect.setAttributeNS(null, 'x', this._box.getX());
+                rect.setAttributeNS(null, 'y', this._box.getY());
+                rect.setAttributeNS(null, 'width', this._box.getWidth());
+                rect.setAttributeNS(null, 'height', this._box.getHeight());
+                rect.setAttributeNS(null, 'fill', this._box.getColor());
                 return rect;
             }
         }
