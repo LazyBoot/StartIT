@@ -82,8 +82,8 @@
             show() {
                 var boxes = this._boxes.getBoxes();
                 this._svg.innerHTML = '';
-                for (let i in boxes) {
-                    let box = boxes[i]
+                for (let box of boxes) {
+                    let i = boxes.indexOf(box);
                     let boxView = new BoxView(box);
                     let rect = boxView.getRect(i);
                     rect.addEventListener('click', function () { removeBox(i) });

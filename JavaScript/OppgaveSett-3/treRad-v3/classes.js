@@ -141,16 +141,14 @@ class GameView {
         this._outputField;
 
         let cells = game.getCells();
-        for (let i in cells) {
-            let cell = cells[i];
+        for (let cell of cells) {
             this._cellViews.push(new CellView(cell));
         }
     }
 
     show() {
         this._gameBoard.innerHTML = '';
-        for (let i in this._cellViews) {
-            let cellView = this._cellViews[i];
+        for (let cellView of this._cellViews) {
             this._gameBoard.appendChild(cellView.getCell());
         }
 
