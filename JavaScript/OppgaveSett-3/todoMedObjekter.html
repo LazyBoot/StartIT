@@ -120,7 +120,9 @@
             allItems[index].isDone = checkBox.checked;
             if (checkBox.checked) {
                 d = new Date();
-                allItems[index].dateDone = d.getFullYear() + '-' + d.getMonth().toString().padStart(2, '0') + '-' + d.getDate().toString().padStart(2, '0');
+                allItems[index].dateDone = d.getFullYear() + '-'
+                    + (d.getMonth() + 1).toString().padStart(2, '0') + '-'
+                    + d.getDate().toString().padStart(2, '0');
             }
             showRow(index);
         }
