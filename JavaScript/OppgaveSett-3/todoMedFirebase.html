@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Todo - med objekter!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h3>Todo-CRUD (med objekter)</h3>
+            CRUD = Create, Read, Update, Delete
+        </div>
+        <div>
+            <table class="table" id="mainTable">
+                <tr>
+                    <th>Gjort</th>
+                    <th>Beskrivelse</th>
+                    <th>Dato gjort</th>
+                    <th>Dato planlagt</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+        <div>
+
+            <div class="form-horizontal">
+                <div class="control-group form-inline">
+                    <label for="txtDescription" class="control-label col-xs-3">Beskrivelse</label>
+                    <input class="form-control" type="text" id="txtDescription" /><br />
+                    <label for="txtDescription" class="control-label col-xs-3">Dato planlagt</label>
+                    <input class="form-control" type="text" id="txtDatePlanned" /><br />
+                    <button class="btn-primary" onclick="addItem()">Legg til</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDGoLEGz88pv2TIt178Qw11U1biAZvx8Fs",
+            authDomain: "lazytest-7db1d.firebaseapp.com",
+            databaseURL: "https://lazytest-7db1d.firebaseio.com",
+            projectId: "lazytest-7db1d",
+            storageBucket: "lazytest-7db1d.appspot.com",
+            messagingSenderId: "804823111572"
+        };
+        var db = firebase.initializeApp(config).firestore();
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+
+    <script type="text/javascript">
+        var allItems = [];
+        var txtDescription = document.getElementById('txtDescription');
+        var txtDatePlanned = document.getElementById('txtDatePlanned');
+        var table = document.getElementById("mainTable");
+        showItems();
+
+        function showItems() {
+            allItems = [];
+            db.collection("todo").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    allItems.push(doc);
+                });
+
+                var tableHeaderRow = table.rows[0].outerHTML;
+                table.innerHTML = tableHeaderRow;
+                allItems.forEach(showRow);
+            }).catch(function (error) {
+                console.log('Error getting document:', error);
+            });
+
+        }
+
+        function showRow(item, i) {
+            var row = table.rows[i + 1] ? table.rows[i + 1] : table.insertRow();;
+            row.innerHTML = '';
+            let data = item.data()
+            var cellDone = row.insertCell();
+            var cellDescription = row.insertCell();
+            var cellDateDone = row.insertCell();
+            var cellDatePlanned = row.insertCell();
+            var cellDelete = row.insertCell();
+            cellDone.innerHTML = '<input type="checkbox" onchange="checkDone(this, ' + i + ')" ' + (data.isDone ? 'checked ' : '') + '/>';
+            cellDescription.innerHTML = data.description;
+            cellDateDone.innerHTML = data.dateDone ? data.dateDone : '';
+            cellDatePlanned.innerHTML = data.datePlanned;
+            cellDelete.innerHTML =
+                '<button class="btn-primary" onclick="editItem(' + i + ')">Edit</button>' +
+                '<button class="btn-danger" onclick="deleteItem(' + i + ')">delete</button>';
+            row.style.color = data.color ? data.color : '#000000';
+
+        }
+
+        function addItem() {
+            var newItem = {};
+            newItem.description = txtDescription.value;
+            newItem.datePlanned = txtDatePlanned.value;
+            db.collection("todo").add(newItem);
+            showItems();
+        }
+
+        function deleteItem(index) {
+            let id = allItems[index].id;
+            db.collection("todo").doc(id).delete();
+            showItems();
+        }
+
+        function editItem(index) {
+            var row = table.rows[index + 1];
+            let item = allItems[index].data();
+
+            row.cells[0].innerHTML = '<input type="color" value="' + (item.color ? item.color : '#000000') + '" />';
+            row.cells[1].innerHTML = '<input type="text" value="' + (item.description ? item.description : '') + '" />';
+            row.cells[2].innerHTML = '<input type="text" value="' + (item.dateDone ? item.dateDone : '') + '" />';
+            row.cells[3].innerHTML = '<input type="text" value="' + (item.datePlanned ? item.datePlanned : '') + '" />';
+            row.cells[4].innerHTML =
+                '<button class="btn-primary" onclick="saveEdit(' + index + ');">Save</button>' +
+                '<button class="btn-danger" onclick="cancelEdit(' + index + ');">Cancel</button>';
+        }
+
+        function saveEdit(index) {
+            var row = table.rows[index + 1];
+            var inputs = row.getElementsByTagName('input');
+            let itemId = allItems[index].id;
+            let item = {};
+
+            item.description = inputs[1].value;
+            item.dateDone = inputs[2].value;
+            item.datePlanned = inputs[3].value;
+            item.color = inputs[0].value;
+            db.collection('todo').doc(itemId).update(item);
+            showItems();
+        }
+
+        function cancelEdit(index) {
+            showRow(allItems[index], index);
+        }
+
+        function checkDone(checkBox, index) {
+            let item = allItems[index].data()
+            let itemId = allItems[index].id;
+            item.isDone = checkBox.checked;
+            if (checkBox.checked) {
+                d = new Date();
+                item.dateDone = d.getFullYear() + '-'
+                    + (d.getMonth() + 1).toString().padStart(2, '0') + '-'
+                    + d.getDate().toString().padStart(2, '0');
+            }
+            db.collection('todo').doc(itemId).update(item);
+            showItems();
+        }
+    </script>
+</body>
+</html>
