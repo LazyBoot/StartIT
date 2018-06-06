@@ -55,6 +55,7 @@
     </script>
 
     <script type="text/javascript">
+        'use strict';
         var allItems = [];
         var txtDescription = document.getElementById('txtDescription');
         var txtDatePlanned = document.getElementById('txtDatePlanned');
@@ -88,8 +89,9 @@
             var cellDelete = row.insertCell();
             cellDone.innerHTML = '<input type="checkbox" onchange="checkDone(this, ' + i + ')" ' + (data.isDone ? 'checked ' : '') + '/>';
             cellDescription.innerHTML = data.description;
-            cellDateDone.innerHTML = data.dateDone ? data.dateDone : '';
-            cellDatePlanned.innerHTML = data.datePlanned;
+            cellDateDone.innerHTML = data.dateDone ? data.dateDone.toDate().toISOString().split('T', 1)[0] : '';
+            let datePlanned = data.datePlanned.toDate();
+            cellDatePlanned.innerHTML = datePlanned.toISOString().split('T', 1)[0];
             cellDelete.innerHTML =
                 '<button class="btn-primary" onclick="editItem(' + i + ')">Edit</button>' +
                 '<button class="btn-danger" onclick="deleteItem(' + i + ')">delete</button>';
@@ -100,7 +102,16 @@
         function addItem() {
             var newItem = {};
             newItem.description = txtDescription.value;
-            newItem.datePlanned = txtDatePlanned.value;
+            let inputDate = Date.parse(txtDatePlanned.value);
+            if (isNaN(inputDate)) {
+                txtDatePlanned.value = 'Invalid date';
+                return;
+            }
+            newItem.datePlanned = new Date(inputDate);
+
+            let d = new Date();
+            newItem.dateAdded = d;
+
             db.collection("todo").add(newItem);
             showItems();
         }
@@ -147,10 +158,11 @@
             let itemId = allItems[index].id;
             item.isDone = checkBox.checked;
             if (checkBox.checked) {
-                d = new Date();
-                item.dateDone = d.getFullYear() + '-'
-                    + (d.getMonth() + 1).toString().padStart(2, '0') + '-'
-                    + d.getDate().toString().padStart(2, '0');
+                let d = new Date();
+                item.dateDone = d;
+                //item.dateDone = d.getFullYear() + '-'
+                //    + (d.getMonth() + 1).toString().padStart(2, '0') + '-'
+                //    + d.getDate().toString().padStart(2, '0');
             }
             db.collection('todo').doc(itemId).update(item);
             showItems();
