@@ -60,12 +60,12 @@
         var txtDescription = document.getElementById('txtDescription');
         var txtDatePlanned = document.getElementById('txtDatePlanned');
         var errorField = document.getElementById('errorField');
-        //txtDatePlanned.value = (new Date()).toISOString().split('T', 1)[0]
+        txtDatePlanned.value = (new Date()).toISOString().split('T', 1)[0]
         var table = document.getElementById("mainTable");
         showItems();
 
         function showItems() {
-            db.collection("todo").onSnapshot((querySnapshot) => {
+            db.collection("todo").orderBy("datePlanned").onSnapshot((querySnapshot) => {
                 allItems = [];
                 querySnapshot.forEach((doc) => {
                     allItems.push(doc);
