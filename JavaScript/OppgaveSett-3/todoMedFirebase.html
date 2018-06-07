@@ -30,8 +30,9 @@
                     <label for="txtDescription" class="control-label col-xs-3">Beskrivelse</label>
                     <input class="form-control" type="text" id="txtDescription" /><br />
                     <label for="txtDescription" class="control-label col-xs-3">Dato planlagt</label>
-                    <input class="form-control" type="text" id="txtDatePlanned" /><br />
+                    <input class="form-control" type="date" id="txtDatePlanned" /><br />
                     <button class="btn-primary" onclick="addItem()">Legg til</button>
+                    <span id="errorField" style="color: red;font-weight:bold;"></span>
                 </div>
             </div>
         </div>
@@ -59,12 +60,14 @@
         var allItems = [];
         var txtDescription = document.getElementById('txtDescription');
         var txtDatePlanned = document.getElementById('txtDatePlanned');
+        var errorField = document.getElementById('errorField');
+        //txtDatePlanned.value = (new Date()).toISOString().split('T', 1)[0]
         var table = document.getElementById("mainTable");
         showItems();
 
         function showItems() {
-            allItems = [];
-            db.collection("todo").get().then((querySnapshot) => {
+            db.collection("todo").onSnapshot((querySnapshot) => {
+                allItems = [];
                 querySnapshot.forEach((doc) => {
                     allItems.push(doc);
                 });
@@ -72,8 +75,6 @@
                 var tableHeaderRow = table.rows[0].outerHTML;
                 table.innerHTML = tableHeaderRow;
                 allItems.forEach(showRow);
-            }).catch(function (error) {
-                console.log('Error getting document:', error);
             });
 
         }
@@ -103,8 +104,8 @@
             var newItem = {};
             newItem.description = txtDescription.value;
             let inputDate = Date.parse(txtDatePlanned.value);
-            if (isNaN(inputDate)) {
-                txtDatePlanned.value = 'Invalid date';
+            if (isNaN(inputDate) || txtDescription == '') {
+                errorField.innerHTML = 'Invalid description or date';
                 return;
             }
             newItem.datePlanned = new Date(inputDate);
@@ -113,6 +114,8 @@
             newItem.dateAdded = d;
 
             db.collection("todo").add(newItem);
+
+            errorField.innerHTML = '';
             showItems();
         }
 
