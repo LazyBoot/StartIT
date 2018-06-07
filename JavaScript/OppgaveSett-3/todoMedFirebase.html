@@ -131,8 +131,8 @@
 
             row.cells[0].innerHTML = '<input type="color" value="' + (item.color ? item.color : '#000000') + '" />';
             row.cells[1].innerHTML = '<input type="text" value="' + (item.description ? item.description : '') + '" />';
-            row.cells[2].innerHTML = '<input type="text" value="' + (item.dateDone ? item.dateDone : '') + '" />';
-            row.cells[3].innerHTML = '<input type="text" value="' + (item.datePlanned ? item.datePlanned : '') + '" />';
+            row.cells[2].innerHTML = '<input type="date" value="' + (item.dateDone ? item.dateDone.toDate().toISOString().split('T', 1)[0] : '') + '" />';
+            row.cells[3].innerHTML = '<input type="date" value="' + (item.datePlanned ? item.datePlanned.toDate().toISOString().split('T', 1)[0] : '') + '" />';
             row.cells[4].innerHTML =
                 '<button class="btn-primary" onclick="saveEdit(' + index + ');">Save</button>' +
                 '<button class="btn-danger" onclick="cancelEdit(' + index + ');">Cancel</button>';
@@ -145,8 +145,8 @@
             let item = {};
 
             item.description = inputs[1].value;
-            item.dateDone = inputs[2].value;
-            item.datePlanned = inputs[3].value;
+            item.dateDone = new Date(inputs[2].value);
+            item.datePlanned = new Date(inputs[3].value);
             item.color = inputs[0].value;
             db.collection('todo').doc(itemId).update(item);
             showItems();
